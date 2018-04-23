@@ -1,0 +1,57 @@
+name:                bio
+version:             0.1.0.0
+github:              "odr/bio"
+license:             BSD3
+author:              "Dmitry Olshansky"
+maintainer:          "olshanskydr@gmail.com"
+copyright:           "Dmitry Olshansky"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            web, type, database
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on Github at <https://github.com/odr/bio#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- hasbolt
+- data-default
+- text
+- containers
+# - formatting
+- transformers
+- generic-lens
+- microlens
+- safe
+
+library:
+  source-dirs: src
+
+executables:
+  bio-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - bio
+
+tests:
+  bio-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - bio
