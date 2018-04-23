@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 module Main where
 
 import           Data.Default
@@ -10,6 +11,11 @@ main :: IO ()
 main = do
   pipe <- connect $ def { user = "neo4j", password = "neo4j" }
   mapM_ (addReaction pipe) reactions
+  mapM_ putStrLn ["","--- Reaction 4 ---",""]
+  getReaction pipe (Key 4) >>= print
+  mapM_ putStrLn ["","","--- Shortest path ([Key Reaction]) from Molecule 1 to 9 ---",""]
+  getShortestPath pipe (Key 1) (Key 9) >>= print
+
 
 reactions :: [Reaction]
 reactions =
